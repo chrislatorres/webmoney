@@ -14,7 +14,11 @@
       document.monetization.addEventListener('monetizationprogress', ev => {
         console.log(ev.detail);
         const apiUrl = 'https://api.metaverse.website/monetization/1/0x00000000/%24ilp.uphold.com%2F3qf4fNgde3fD';
-        const data = ev;
+        const data = {
+          amount: ev.detail.amount,
+          assetCode: ev.detail.assetCode,
+          assetScale: ev.detail.assetScale
+        };
         fetch(apiUrl, { method: 'POST', body: JSON.stringify(data) }).then(response => {
           return response.json();
         }).then(data => {
