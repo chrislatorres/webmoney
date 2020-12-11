@@ -12,7 +12,16 @@
 
     if (document.monetization) {
       document.monetization.addEventListener('monetizationprogress', ev => {
-        console.log(ev);
+        const apiUrl = 'https://api.metaverse.website/monetize/%24ilp.uphold.com%2F3qf4fNgde3fD';
+        fetch(apiUrl).then(response => {
+          return response.json();
+        }).then(data => {
+          // Work with JSON data here
+          console.log(data);
+        }).catch(err => {
+          // Do something for an error here
+        });
+        //console.log(ev);
         // initialize currency and scale on first progress event
         if (total === 0) {
           scale = ev.detail.assetScale
